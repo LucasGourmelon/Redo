@@ -1,0 +1,25 @@
+h1 {
+    text-align: center;
+}
+
+#game-board {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-collapse: collapse;
+}
+
+td {
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
+
+.active{
+    background-color: black;
+}
+
+.inactive{
+    background-color: white;
+}
