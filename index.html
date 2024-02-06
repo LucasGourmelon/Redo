@@ -8,8 +8,22 @@
 </head>
 <body>
     <h1>Redo</h1>
+    <div id="tables">
+        <table id="game-board" class="classGameBoard"></table>
+        <table id="game-boardRandom" class="classGameBoard"></table>
+    </div>
+    <dialog id="falseModal">
+        <p>Grids are not the same :(</p>
+        <div><button class="modalButton incline" onclick="reload()">Try again</button></div>
+    </dialog>
 
-    <table id="game-board"></table>
+    <dialog id="ggModal">
+        <p>Well done !</p>
+        <div><button class="modalButton incline" onclick="location.reload()">Play again</button></div>
+    </dialog>
+    <div id="footer">
+        <button id="submitButton" class="incline" onclick="verify()">OK</button>
+    </div>
     <script src="js/main.js"></script>
 </body>
 </html>

@@ -1,25 +1,122 @@
-h1 {
-    text-align: center;
+:root {
+    --main-color: cornflowerblue;
 }
 
-#game-board {
+@font-face {
+    font-family: 'tan-moonlight';
+    src: url('../fonts/tan-moonlight/tan_moonlight_display-webfont.woff2') format('woff2'),
+         url('../fonts/tan-moonlight/tan_moonlight_display-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'rushford';
+    src: url('../fonts/rushfordclean/rushfordclean-rgz89-webfont.woff2') format('woff2'),
+         url('../fonts/rushfordclean/rushfordclean-rgz89-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+    font-size: 40px;
+    text-shadow: grey 3px 5px;
+    background: linear-gradient(to bottom right, #FFF7AD,#FFA9F9);
+    font-family: 'tan-moonlight', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+  
+.my-window {
+    width: 100%;
+    height: 100vh;
+}
+
+h1{
+    margin: 0;
+    margin-top: 30px;
+    /* background-color: red; */
+    text-align: center;
+    height: 15vh;
+    line-height: 15vh;
+    font-size: 10vh;
+}
+
+#tables{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    border-collapse: collapse;
+}
+
+table {
+    /* border-collapse: collapse; */
+    margin: 50px;
 }
 
 td {
     border: 1px solid black;
-    width: 100px;
-    height: 100px;
+    border-radius: 20px;
+    width: 70px;
+    height: 70px;
     text-align: center;
 }
 
 .active{
-    background-color: black;
+    background: black;
 }
 
 .inactive{
     background-color: white;
+}
+
+#footer{
+    text-align: center;
+}
+
+button{
+    text-shadow: grey 3px 5px;
+    border: 1px solid black;
+    color: black;
+    font-family: 'tan-moonlight', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: white;
+}
+
+#submitButton{
+    border-radius: 30% 70% 70% 30% / 30% 58% 42% 70%;
+    width: 10%;
+    height: 80px;
+    font-size: 70px;
+}
+
+#submitButton:active{
+    text-shadow: #FFF7AD 3px 5px;
+    background-color: #FFA9F9;
+}
+
+#submitButton:hover{
+    font-size: 80px;
+    transition: transform .1s;
+}
+
+.incline{
+    transform: rotate(8deg);
+    -moz-transform: rotate(8deg);
+    -webkit-transform: rotate(8deg);
+    -khtml-transform: rotate(8deg);
+}
+
+dialog{
+    text-align: center;
+    text-shadow: none;
+    font-family: 'rushford';
+}
+
+.modalButton{
+    font-size: 40px;
+    border-radius: 30% 70% 70% 30% / 30% 58% 42% 70%;
+    text-shadow: none;
+    background: linear-gradient(to bottom right, #FFF7AD,#FFA9F9);
+    font-family: 'rushford';
 }
