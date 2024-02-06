@@ -12,6 +12,13 @@ document.addEventListener('DOMContentLoaded',function(){
         const clickedCell = e.target;
         switchState(clickedCell);
     })
+
+    document.addEventListener("keydown", function(event) {
+        // Vérifiez si la touche enfoncée est la touche Entrée (code 13)
+        if (event.key === "Enter" || event.keyCode === 13) {
+            verify();
+        }
+    });
 });
 
 function createRandomGameBoard(nbRows,nbCol){
