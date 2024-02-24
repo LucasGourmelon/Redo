@@ -6,10 +6,9 @@ const SUB = -1;
 const gameboard = createGameBoard(NB_ROWS,NB_COL);
 const randomGameboard = createRandomGameBoard(NB_ROWS,NB_COL);
 
-
 document.addEventListener('DOMContentLoaded',function(){
     document.getElementById('points').innerHTML = "Score : " + getPoints();
-    
+
     displayGameBoard(gameboard,"game-board");
     displayGameBoard(randomGameboard,"game-boardRandom");
 
@@ -19,8 +18,11 @@ document.addEventListener('DOMContentLoaded',function(){
     })
     
     document.addEventListener("keydown", function(event) {
-        if (event.key === "Enter" || event.keyCode ===  13) {
-            document.getElementById('submitButton').click();
+        if (event.key === "Enter" || event.keyCode === 13) {
+            var dialog = document.getElementById('falseModal');
+            if (!dialog.open) { // Vérifie si la boîte de dialogue n'est pas ouverte
+                document.getElementById('submitButton').click();
+            }
         }
     });
 });
@@ -64,10 +66,8 @@ function createGameBoard(nbRows,nbCol){
 }
 
 function displayGameBoard(board,id) {
-    // let tables = document.getElementsByClassName('classGameBoard');
     let table = document.getElementById(id);
 
-    // for(let i = 0 ; i < tables.length ; i++){
         for (let j = 0; j < board.length; j++) {
             const row = table.insertRow();
             for (let k = 0; k < board[j].length; k++) {
@@ -79,7 +79,6 @@ function displayGameBoard(board,id) {
                 }
             }
         } 
-    // }
 }
 
 function cleanBoard(){
@@ -119,13 +118,13 @@ function verify(){
             dialog = document.getElementById('ggModal');
             dialog.showModal();
         }
-    },  100); // Adjust the delay as needed
+    },  100); 
 }
 
 function reload(){
-    let dialog = document.getElementById('falseModal');
-    cleanBoard();
+    var dialog = document.getElementById('falseModal');
     dialog.close();
+    cleanBoard();
 }
 
 function areSame(){
