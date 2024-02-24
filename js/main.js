@@ -1,10 +1,15 @@
 const NB_ROWS = 5;
 const NB_COL = 5;
+const ADD = 1;
+const SUB = -1;
 
 const gameboard = createGameBoard(NB_ROWS,NB_COL);
 const randomGameboard = createRandomGameBoard(NB_ROWS,NB_COL);
 
+
 document.addEventListener('DOMContentLoaded',function(){
+    document.getElementById('points').innerHTML = "Score : " + getPoints();
+    
     displayGameBoard(gameboard,"game-board");
     displayGameBoard(randomGameboard,"game-boardRandom");
 
@@ -12,11 +17,10 @@ document.addEventListener('DOMContentLoaded',function(){
         const clickedCell = e.target;
         switchState(clickedCell);
     })
-
+    
     document.addEventListener("keydown", function(event) {
-        // Vérifiez si la touche enfoncée est la touche Entrée (code 13)
-        if (event.key === "Enter" || event.keyCode === 13) {
-            verify();
+        if (event.key === "Enter" || event.keyCode ===  13) {
+            document.getElementById('submitButton').click();
         }
     });
 });
@@ -104,14 +108,18 @@ function switchState(cell){
 }
 
 function verify(){
-    if(!areSame())
-    {
-        let dialog = document.getElementById('falseModal');
-        dialog.showModal();
-    }else{
-        let dialog = document.getElementById('ggModal');
-        dialog.showModal();
-    }
+    setTimeout(function() {
+        let dialog;
+        if(!areSame()) {
+            updatePoints(SUB);
+            dialog = document.getElementById('falseModal');
+            dialog.showModal();
+        } else {
+            updatePoints(ADD);
+            dialog = document.getElementById('ggModal');
+            dialog.showModal();
+        }
+    },  100); // Adjust the delay as needed
 }
 
 function reload(){
@@ -121,16 +129,27 @@ function reload(){
 }
 
 function areSame(){
-    console.log(gameboard);
-    console.log(randomGameboard);
     for(let i = 0 ; i < NB_ROWS ; i++){
         for(let j = 0 ; j < NB_COL ; j++){
             if(gameboard[i][j] != randomGameboard[i][j]){
-                console.log('false');
                 return false;
             }
         }
     }
-    console.log('true');
     return true; 
+}
+
+function updatePoints(newPoints) {
+    if((getPoints() + newPoints) >= 0){
+        sessionStorage.setItem('points', getPoints() + newPoints);
+    } 
+    document.getElementById('points').innerHTML = "Score : " + getPoints();
+}
+
+function getPoints() {
+    let points = sessionStorage.getItem('points');
+    if(points == null){
+        return 0;
+    }
+    return Number(points);
 }
